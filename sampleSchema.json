@@ -1,0 +1,76 @@
+{
+    "name": "deals",
+    "collectionName": "deals",
+    "modelName": "deals",
+    "api": "/domain/deals/",
+    "idPrefix": "DE",
+    "definition": {
+      "_id": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String",
+        "required": true
+      },
+      "shortName": {
+        "type": "String"
+      },
+      "template_id": {
+        "type": "String",
+        "required": true
+      },
+      "contact_id": [
+        {
+          "type": "String"
+        }
+      ],
+      "businessSegnment_id": {
+        "type": "String",
+        "required": true
+      },
+      "duration": {
+        "definition": {
+          "start": {
+            "type": "Date",
+            "required": true
+          },
+          "end": {
+            "type": "Date"
+          }
+        }
+      },
+      "processingUnits": [
+        {
+          "type": "String"
+        }
+      ],
+      "purposes": [
+        {
+          "definition": {
+            
+            "name": {
+              "type": "String"
+            },
+            "templatePurpose_id": {
+              "type": "String"
+            }
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "definition": {
+            "name": {
+              "type": "String"
+            },
+            "value": {
+              "type": "String"
+            },
+            "templateAttribute_id": {
+              "type": "String"
+            }
+          }
+        }
+      ]
+    }
+  }
