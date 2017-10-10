@@ -5,7 +5,7 @@ module.exports = function(name, config){
     var controllerJs = `"use strict";
 
 const definition = require("../helpers/${name}.definition.js").definition;
-const SMCrud = require("swagger-sequelize-crud");
+const SSCrud = require("swagger-sequelize-crud");
 const cuti = require("cuti");
 const Sequelize = require("sequelize");
 const logger = global.logger;
@@ -32,7 +32,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-var crudder = new SMCrud(sequelize, definition ,"${modelName}", options);
+var crudder = new SSCrud(sequelize, definition ,"${modelName}", options);
 module.exports = {
     create:crudder.create,
     index:crudder.index,
