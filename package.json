@@ -16,7 +16,8 @@
   "dependencies": {
     "inquirer": "^3.0.6",
     "js-yaml": "^3.8.3",
-    "log4js": "^1.1.1"
+    "log4js": "^1.1.1",
+    "yargs": "^9.0.1"
   },
   "bin": {
     "codeGenerator": "bin/codeGenerator.js"

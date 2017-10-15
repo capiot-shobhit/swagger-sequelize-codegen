@@ -24,15 +24,30 @@ const { createController } = require("../projectSkeletons/controller.js");
 const { centralController } = require("../projectSkeletons/centralController.js");
 const { generateYaml } = require("../projectSkeletons/generateYaml.js");
 const { generateFolderStructure } = require("../projectSkeletons/createProjectStructure");
+const yargs = require('yargs').argv;
+const fs = require('fs');
 
 global.logger = logger;
 var config = {};
 function init(){
-    prompt(questions)
-    .then(result => {
-        config = result;
-        return startProcessing();
-    }).then(() =>{
+    if(yargs.options){
+        const contents = fs.readFileSync(yargs.options, 'utf8');
+        config = JSON.parse(contents);
+        console.log(config);
+        initStartProcessing();
+    }else{
+        prompt(questions)
+        .then(result => {
+            console.log("result of question ",result);
+            config = result;
+            initStartProcessing();
+        })
+    }
+}
+
+function initStartProcessing(){
+    startProcessing()
+    .then(() =>{
         logger.info("Your project structure is ready");
         readLine.closeIO();
     }).catch(err => {
@@ -52,7 +67,6 @@ function startProcessing(){
     .then(() => config.newProject?createAppjsfile(config):Promise.resolve())
     .then(() => createController(config))
     .then(() => centralController(config))
-    // .then(()=>console.log("Finished"));
     .then(() => generateYaml(config));
 }
 
