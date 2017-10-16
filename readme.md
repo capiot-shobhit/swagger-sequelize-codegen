@@ -16,7 +16,7 @@ We need a minimum of Nodejs 6 to run the project on a stable environment. It's b
 
 ### Installing
 
-git clone git@bitbucket.org:capiot/codegen.git
+git clone https://bitbucket.org/capiot/swagger-sequelize-codegen.git
 
 ## Configuration File
 
