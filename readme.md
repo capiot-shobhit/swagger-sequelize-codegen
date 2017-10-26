@@ -18,6 +18,13 @@ We need a minimum of Nodejs 6 to run the project on a stable environment. It's b
 
 git clone https://bitbucket.org/capiot/swagger-sequelize-codegen.git
 
+## How to use
+1. Go to the project directory
+2. run node bin\codeGenerator.js
+3. Answer questions or you can provide the filepath of the answer as --option when running the application
+4. After completion of the process a node project will be generated with the configuration specified.
+5. Update the postgres connection string in app.js and controller of the created project.
+
 ## Configuration File
 
 The configuration file takes in a JSON Object with an array called list, the list element contains an object with three elements in it name, sequence and fields. Fields is an array which will contain all the fields. Name will be the name of the definition in the swagger.yaml file and the sequelize table. All the services associated with this object will start at localhost:portNumber/{projectName}/v1/{name}, here the projectName will be taken as an argument over the command line and the name is the part of the configuration file.
