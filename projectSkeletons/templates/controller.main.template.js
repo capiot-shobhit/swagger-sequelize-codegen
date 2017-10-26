@@ -31,8 +31,8 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
-var crudder = new SSCrud(sequelize, definition ,"${modelName}", options);
+var hooks = [];
+var crudder = new SSCrud(sequelize, definition ,"${modelName}", options, hooks);
 module.exports = {
     create:crudder.create,
     index:crudder.index,
