@@ -27,7 +27,7 @@ const logger = log4js.getLogger("${config.projectName}");
 const bluebird = require("bluebird");
 const Sequelize = require("sequelize");
 const pg = require('pg');
-
+${puttuRedis}
 global.Promise = bluebird;
 global.logger = logger;
 
@@ -36,16 +36,16 @@ dbName = dbName.toLowerCase();
 var conStringPostgres = 'postgres://postgres:welcome@localhost:5432/postgres';
 var conStringDB = 'postgres://postgres:welcome@localhost:5432/' + dbName;
 
-var client = new pg.Client(conStringPostgres);
+var pgClient = new pg.Client(conStringPostgres);
 try{
-  client.connect().then(()=>{
-	client.query("select count(*) from pg_catalog.pg_database where datname = '"+dbName+"'").then(result=>{
+    pgClient.connect().then(()=>{
+        pgClient.query("select count(*) from pg_catalog.pg_database where datname = '"+dbName+"'").then(result=>{
 		var dbCount = result.rows[0].count;
 		if(dbCount=="1"){
 			console.log("Database Exist");
 			registerSwagger();
 		}else{
-				client.query('CREATE DATABASE '+dbName).then(result=>{
+            pgClient.query('CREATE DATABASE '+dbName).then(result=>{
 				registerSwagger();
 				});
 			}
